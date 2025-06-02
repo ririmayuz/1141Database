@@ -11,7 +11,7 @@
     <?php 
      $dsn="mysql:host=localhost;dbname=store;charset=utf8";
      $pdo=new PDO($dsn, 'root', '');
-     $items=$pdo->query("SELECT `name`,`price` FROM items")->fetchAll(PDO::FETCH_ASSOC);
+     $items=$pdo->query("SELECT `id`, `name`,`price` FROM items")->fetchAll(PDO::FETCH_ASSOC);
     
     ?>
     <style>
@@ -33,6 +33,7 @@
         <tr>
             <td>品項</td>
             <td>價格</td>
+            <td>操作</td>
         </tr>
         <?php
         foreach($items as $item):
@@ -40,6 +41,7 @@
         <tr>
             <td><?=$item['name'];?></td>
             <td><?=$item['price'];?></td>
+            <td><a href='update_item.php?id=<?=$item['id'];?>'>編輯</a></td>
         </tr>
         <?php
         endforeach;
